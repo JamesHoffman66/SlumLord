@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float horizontalInput;
     public float verticalInput;
-    private float speed = 15f;
+    private float speed = 5f;
     private Rigidbody rb;
     public float xRange = 19f;
 
@@ -25,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // Player movement using wasd to move horizontally and vertically 
         horizontalInput = Input.GetAxis("Horizontal");
-                //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+                
 
         verticalInput = Input.GetAxis("Vertical");
-                //transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+                
 
         // Player cant go through rigid bodies
         Vector3 moveVector = new Vector3(horizontalInput, verticalInput, 0);
