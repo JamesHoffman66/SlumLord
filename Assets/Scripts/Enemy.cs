@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public float speed = 0.1f;
+    public float speed = 1f;
     private Rigidbody enemyRB;
     private GameObject player;
     private float knockBackStrength = 80f;
@@ -34,7 +34,10 @@ public class Enemy : MonoBehaviour
             Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
 
+            // Writes to the console that the enemy made contact with the player
             Debug.Log("Collided with: " + collision.gameObject.name);
+
+            // Knocks back the player
             playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
         }
     }
