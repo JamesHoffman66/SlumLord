@@ -2271,6 +2271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6417742423649027657, guid: 996d9cb916414fa47aee39068197691c, type: 3}
+  enemyCount: 0
+  waveNumber: 1
 --- !u!4 &1824846916
 Transform:
   m_ObjectHideFlags: 0
@@ -2686,17 +2688,21 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 5252656f9889c6c438f2cab444f1e431, type: 2}
+    - target: {fileID: 642268205602919778, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1598621958874969235, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.59734
       objectReference: {fileID: 0}
     - target: {fileID: 1598621958874969235, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.55
+      value: 1.040825
       objectReference: {fileID: 0}
     - target: {fileID: 1598621958874969235, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.16
+      value: -13.3
       objectReference: {fileID: 0}
     - target: {fileID: 1598621958874969235, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
       propertyPath: m_LocalPosition.y

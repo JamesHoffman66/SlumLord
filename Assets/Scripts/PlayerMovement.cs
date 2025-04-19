@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Swing.gameObject.SetActive(false);
         attacking = false;
+        
     }
 
     // Update is called once per frame
@@ -40,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = (moveVector * speed);
 
         // Player movement boundaries 
-        if (transform.position.x < -xRange)
+        if (transform.position.x < -19.3f)
         {
-            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-19.3f, transform.position.y, transform.position.z);
         }
         if (transform.position.x > xRange)
         {
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 19.4f, transform.position.z);
         }
 
+        // attack code (destroys enemy when player attacks)
         if (!attacking)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -68,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+   
+
+    // delays the swing 
     IEnumerator attackDelay(float delay)
     {
         attacking = true;
