@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 
@@ -13,11 +14,15 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 5f;
     private Rigidbody rb;
     public float xRange = 19f;
+    public GameObject Swing;
+    public bool attacking;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Swing.gameObject.SetActive(false);
+        attacking = false;
     }
 
     // Update is called once per frame
@@ -51,5 +56,24 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 19.4f, transform.position.z);
         }
+
+        if (!attacking)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Swing.gameObject.SetActive(true);
+                StartCoroutine(attackDelay(0.2f));
+
+            }
+        }
+    }
+
+    IEnumerator attackDelay(float delay)
+    {
+        attacking = true;
+        yield return new WaitForSeconds(delay);
+        Swing.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        attacking = false;
     }
 }
