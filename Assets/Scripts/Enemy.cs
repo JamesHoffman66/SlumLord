@@ -25,6 +25,15 @@ public class Enemy : MonoBehaviour
         // Enemy follows player
         enemyRB.AddForce((player.transform.position - transform.position).normalized * speed);
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Swing"))
+        {
+            Debug.Log("Enemy KO");
+            Destroy(gameObject);
+        }
+
+    }
 
     // Makes it so when the enemy runs into the player, the player will get bounced back
     private void OnCollisionEnter(Collision collision)
@@ -41,4 +50,6 @@ public class Enemy : MonoBehaviour
             playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
         }
     }
+
+    
 }
