@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviour
         // Spawns enemy in random location
         float spawnPosX = Random.Range(18,3);
         float spawnPosY = Random.Range(8, 17);
-        Vector3 randomPos = new Vector3(spawnPosX, spawnPosY, 0.5f);
+        Vector3 randomPos = new Vector3(spawnPosX, spawnPosY, 0.3f);
         return randomPos;
     }
 
