@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float xRange = 19f;
     public GameObject Swing;
+    public GameObject SwingLeft;
     public bool attacking;
+    public bool facingLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,19 @@ public class PlayerMovement : MonoBehaviour
     {
         // Player movement using wasd to move horizontally and vertically 
         horizontalInput = Input.GetAxis("Horizontal");
-                
+
+        if (horizontalInput > 0)
+        {
+            facingLeft = false;
+            // spriteRenderer.flipX = false;
+        }
+
+        if (horizontalInput < 0)
+        {
+            facingLeft = true;
+            // spriteRenderer.flipX = true;
+        }
+
 
         verticalInput = Input.GetAxis("Vertical");
                 
@@ -63,7 +77,16 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Swing.gameObject.SetActive(true);
+                // directional attacking
+                if (facingLeft)
+                {
+                    SwingLeft.gameObject.SetActive(true);
+                }
+                else 
+                { 
+                    Swing.gameObject.SetActive(true); 
+                }
+                
                 StartCoroutine(attackDelay(0.2f));
 
             }
@@ -78,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         attacking = true;
         yield return new WaitForSeconds(delay);
         Swing.gameObject.SetActive(false);
+        SwingLeft.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
     }
