@@ -94,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+   
+
     // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console
     private void OnTriggerEnter(Collider other)
     {
@@ -105,7 +107,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (hasPowerUp)
+        {
+
+        }
+    }
+
+
 
     // delays the swing 
     IEnumerator attackDelay(float delay)
