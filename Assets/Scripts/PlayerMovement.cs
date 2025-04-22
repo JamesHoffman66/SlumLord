@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject SwingLeft;
     public bool attacking;
     public bool facingLeft;
+    private bool hasPowerUp;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +91,17 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(attackDelay(0.2f));
 
             }
+        }
+    }
+
+    // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Power-Up"))
+        {
+            hasPowerUp = true;
+            Destroy(other.gameObject);
+            Debug.Log("Power-Up destroyed");
         }
     }
 
