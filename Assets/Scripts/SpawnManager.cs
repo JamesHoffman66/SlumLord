@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -8,13 +9,16 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab;
     public int enemyCount;
     public int waveNumber = 0;
-    
+    public int waves;
+    public TextMeshProUGUI WavesText;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         SpawnEnemyWave(waveNumber);
+        WaveNumber(0);
     }
 
     // Update is called once per frame
@@ -42,8 +46,14 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(),
-                enemyPrefab.transform.rotation);
+            Instantiate(enemyPrefab, GenerateSpawnPosition(),enemyPrefab.transform.rotation);
+            waves++;
         }
+    }
+
+    private void WaveNumber(int wavesToChange)
+    {
+        waves += wavesToChange;
+        WavesText.text = "Lives: " + waves;
     }
 }

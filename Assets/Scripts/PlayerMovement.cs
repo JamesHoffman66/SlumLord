@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
@@ -19,6 +20,12 @@ public class PlayerMovement : MonoBehaviour
     public bool attacking;
     public bool facingLeft;
     private bool hasPowerUp;
+    public TextMeshProUGUI livesText;
+    private int lives;
+    public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI RestartButton;
+    public bool isGameActive;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Swing.gameObject.SetActive(false);
         attacking = false;
-        
+
+        GameOverText.gameObject.SetActive(true);
+
+        UpdateLives(3);
+
     }
 
     // Update is called once per frame
@@ -94,7 +105,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   
+    public void UpdateLives(int livesToChange)
+    {
+        lives += livesToChange;
+        livesText.text = "Lives: " + lives;
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        GameOverText.gameObject.SetActive(true);
+        RestartButton.gameObject.SetActive(true);
+        isGameActive = false;
+    }
+
+
+
 
     // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console
     private void OnTriggerEnter(Collider other)

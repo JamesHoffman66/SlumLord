@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
 
             // Knocks back the player
             playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
+            
         }
     }
 
