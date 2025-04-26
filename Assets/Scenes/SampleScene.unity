@@ -814,6 +814,10 @@ MonoBehaviour:
   SwingLeft: {fileID: 898928943}
   attacking: 0
   facingLeft: 0
+  livesText: {fileID: 1694785112}
+  GameOverText: {fileID: 2093637172}
+  RestartButton: {fileID: 0}
+  isGameActive: 0
 --- !u!4 &254628116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1598621958874969235, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
@@ -1613,6 +1617,50 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10.5, z: -10.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &982975865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982975867}
+  - component: {fileID: 982975866}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982975866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982975865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2facd0226890c7847b3bae6e3de70e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &982975867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982975865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.514386, y: 10.474161, z: 0.77066743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2437,6 +2485,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6417742423649027657, guid: 996d9cb916414fa47aee39068197691c, type: 3}
   enemyCount: 0
   waveNumber: 1
+  waves: 0
+  WavesText: {fileID: 0}
 --- !u!4 &1824846916
 Transform:
   m_ObjectHideFlags: 0
@@ -2953,3 +3003,4 @@ SceneRoots:
   - {fileID: 1115041789}
   - {fileID: 1824846916}
   - {fileID: 1712612131}
+  - {fileID: 982975867}
