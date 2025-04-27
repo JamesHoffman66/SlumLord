@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
-
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public bool facingLeft;
     private bool hasPowerUp;
     public TextMeshProUGUI livesText;
-    private int lives;
+    private int lives = 4;
     public TextMeshProUGUI GameOverText;
-    public TextMeshProUGUI RestartButton;
+    public UnityEngine.UI.Button RestartButton;
     public bool isGameActive;
 
 
@@ -34,9 +34,9 @@ public class PlayerMovement : MonoBehaviour
         Swing.gameObject.SetActive(false);
         attacking = false;
 
-        GameOverText.gameObject.SetActive(true);
+        GameOverText.gameObject.SetActive(false);
 
-        UpdateLives(3);
+        UpdateLives();
 
     }
 
@@ -105,9 +105,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void UpdateLives(int livesToChange)
+    public void UpdateLives()
     {
-        lives += livesToChange;
+        lives--;
         livesText.text = "Lives: " + lives;
         if (lives <= 0)
         {

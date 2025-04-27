@@ -49,6 +49,10 @@ public class Enemy : MonoBehaviour
             // Knocks back the player
             playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
 
+            // decreases player lives by one when the player is bounced away
+            PlayerMovement playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            playerScript.UpdateLives();
+
         }
     }
 
