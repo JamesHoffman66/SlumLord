@@ -11,11 +11,14 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 0;
     public int waves;
     public TextMeshProUGUI WavesText;
+    public Transform player;
+    public Vector3 playerPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerPosition = player.position;
         Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         SpawnEnemyWave(waveNumber);
         WaveNumber(0);
@@ -44,6 +47,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemyWave(int enemiesToSpawn)
     {
+        player.position = playerPosition;
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(),enemyPrefab.transform.rotation);

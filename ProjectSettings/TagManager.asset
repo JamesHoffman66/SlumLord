@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Swing
   - Power-Up
+  - SpeedBoost
+  - AttackBoost
   layers:
   - Default
   - TransparentFX
