@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI GameOverText;
     public UnityEngine.UI.Button RestartButton;
     public bool isGameActive;
+    public bool speedBoost;
+    public bool attackSpeed;
+    private float attackCooldown = 0.5f;
+    private float powerUpAttackNormal = 0.5f;
+    private float powerUpAttackModified = 0f;
 
 
     // Start is called before the first frame update
@@ -128,22 +133,38 @@ public class PlayerMovement : MonoBehaviour
     // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Power-Up"))
+        if (other.CompareTag("SpeedBoost"))
         {
-            hasPowerUp = true;
+            speedBoost = true;
+            speed = 9f;
             Destroy(other.gameObject);
             Debug.Log("Power-Up destroyed");
+            StartCoroutine(speedBoostCooldown());
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (hasPowerUp)
+        if (other.CompareTag("AttackBoost"))
         {
-
+            attackSpeed = true;
+            attackCooldown = powerUpAttackModified;
+            Destroy(other.gameObject);
+            Debug.Log("Power-Up destroyed");
+            StartCoroutine(speedBoostCooldown());
         }
     }
 
+    IEnumerator speedBoostCooldown()
+    {
+        yield return new WaitForSeconds(7);
+        speed = 5f;
+        speedBoost = false;
+    }
+
+   
+    IEnumerator attackSpeedCooldown()
+    {
+        yield return new WaitForSeconds(7);
+        attackCooldown = powerUpAttackNormal;
+        attackSpeed = false;
+    }
 
 
     // delays the swing 
@@ -153,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Swing.gameObject.SetActive(false);
         SwingLeft.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackCooldown);
         attacking = false;
     }
 }

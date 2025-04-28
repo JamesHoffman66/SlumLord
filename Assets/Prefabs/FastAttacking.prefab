@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4605501996583741152}
   m_Layer: 0
   m_Name: FastAttacking
-  m_TagString: Power-Up
+  m_TagString: AttackBoost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
