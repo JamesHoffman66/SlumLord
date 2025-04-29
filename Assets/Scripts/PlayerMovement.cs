@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI livesText;
     private int lives = 4;
     public TextMeshProUGUI GameOverText;
-    public UnityEngine.UI.Button RestartButton;
+    public GameObject RestartButton;
     public bool isGameActive;
     public bool speedBoost;
     public bool attackSpeed;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         attacking = false;
 
         GameOverText.gameObject.SetActive(false);
+        isGameActive = true;
 
         UpdateLives();
 
@@ -123,11 +125,14 @@ public class PlayerMovement : MonoBehaviour
     public void GameOver()
     {
         GameOverText.gameObject.SetActive(true);
-        RestartButton.gameObject.SetActive(true);
+        RestartButton.SetActive(true);
         isGameActive = false;
     }
 
-
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 
     // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console

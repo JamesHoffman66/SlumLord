@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class SpawnManager : MonoBehaviour
 {
 
@@ -13,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI WavesText;
     public Transform player;
     public Vector3 playerPosition;
+    //public bool isGameActive;
+    public PlayerMovement playerScript;
 
 
     // Start is called before the first frame update
@@ -20,6 +23,7 @@ public class SpawnManager : MonoBehaviour
     {
         playerPosition = player.position;
         Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        playerScript = player.gameObject.GetComponent<PlayerMovement>();
         SpawnEnemyWave(waveNumber);
         WaveNumber(0);
     }
@@ -47,17 +51,24 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemyWave(int enemiesToSpawn)
     {
-        player.position = playerPosition;
-        for (int i = 0; i < enemiesToSpawn; i++)
+        // only spawns enemies while isGameActive is set to true. isGameActive becomes false when there is a game over
+        if (playerScript.isGameActive)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(),enemyPrefab.transform.rotation);
-            waves++;
+            player.position = playerPosition;
+            for (int i = 0; i < enemiesToSpawn; i++)
+            {
+                Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+                waves++;
+            }
         }
+      
     }
 
     private void WaveNumber(int wavesToChange)
     {
         waves += wavesToChange;
-        WavesText.text = "Lives: " + waves;
+        WavesText.text = "Waves: " + waveNumber;
     }
+
+   
 }

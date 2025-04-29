@@ -902,6 +902,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &417881268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6035209042312597927, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
+  m_PrefabInstance: {fileID: 8666165712076554317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddd1f27c76ca3346ba486a0bdabb8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &421798646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,50 +1500,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &982975865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 982975867}
-  - component: {fileID: 982975866}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &982975866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982975865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2facd0226890c7847b3bae6e3de70e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &982975867
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982975865}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.514386, y: 10.474161, z: 0.77066743}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115041786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1196519389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 417881268}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1196519389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,9 +2227,10 @@ MonoBehaviour:
   enemyCount: 0
   waveNumber: 1
   waves: 0
-  WavesText: {fileID: 0}
+  WavesText: {fileID: 703060753}
   player: {fileID: 254628116}
   playerPosition: {x: 0, y: 0, z: 0}
+  playerScript: {fileID: 0}
 --- !u!4 &1824846916
 Transform:
   m_ObjectHideFlags: 0
@@ -2767,6 +2747,10 @@ PrefabInstance:
       propertyPath: GameOverText
       value: 
       objectReference: {fileID: 2093637172}
+    - target: {fileID: 6035209042312597927, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
+      propertyPath: RestartButton
+      value: 
+      objectReference: {fileID: 1196519386}
     - target: {fileID: 6417742423649027657, guid: 576485a68bba7254ba3f66368b94713c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2791,5 +2775,4 @@ SceneRoots:
   - {fileID: 1115041789}
   - {fileID: 1824846916}
   - {fileID: 1712612131}
-  - {fileID: 982975867}
   - {fileID: 843024414853522146}
