@@ -35,6 +35,7 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if (enemyCount == 0 )
         {
+            WaveNumber(1);
             waveNumber++;
             SpawnEnemyWave(waveNumber); 
         }
@@ -67,7 +68,8 @@ public class SpawnManager : MonoBehaviour
     private void WaveNumber(int wavesToChange)
     {
         waves += wavesToChange;
-        WavesText.text = "Waves: " + waveNumber;
+        
+        WavesText.text = "Waves: " + waves;
     }
 
    
