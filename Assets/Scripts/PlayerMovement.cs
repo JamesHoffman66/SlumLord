@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float attackCooldown = 0.5f;
     private float powerUpAttackNormal = 0.5f;
     private float powerUpAttackModified = 0f;
+    
 
 
     // Start is called before the first frame update
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         GameOverText.gameObject.SetActive(false);
         isGameActive = true;
+        Time.timeScale = 1;
 
         UpdateLives();
 
@@ -124,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0;
         GameOverText.gameObject.SetActive(true);
         RestartButton.SetActive(true);
         isGameActive = false;

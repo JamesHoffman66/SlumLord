@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour
     public Vector3 playerPosition;
     //public bool isGameActive;
     public PlayerMovement playerScript;
+   
 
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if (enemyCount == 0 )
         {
-            WaveNumber(1);
+            WaveNumber(0);
             waveNumber++;
             SpawnEnemyWave(waveNumber); 
         }
@@ -69,7 +70,7 @@ public class SpawnManager : MonoBehaviour
     {
         waves += wavesToChange;
         
-        WavesText.text = "Waves: " + waves;
+        WavesText.text = "Waves: " + waveNumber;
     }
 
    
