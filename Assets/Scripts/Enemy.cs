@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     public float speed = 50f;
     private Rigidbody enemyRB;
+    private SpriteRenderer spriteRenderer;
     private GameObject player;
     private float knockBackStrength = 80f;
 
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         // Initializes enemyRB and player
         enemyRB = GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player");
     }
 
@@ -24,6 +26,17 @@ public class Enemy : MonoBehaviour
     {
         // Enemy follows player
         enemyRB.AddForce((player.transform.position - transform.position).normalized * speed);
+        if (enemyRB.velocity.x > 0)
+        {
+            
+            spriteRenderer.flipX = false;
+        }
+
+        if (enemyRB.velocity.x < 0)
+        {
+           
+            spriteRenderer.flipX = true;
+        }
     }
     public void OnTriggerEnter(Collider other)
     {

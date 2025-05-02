@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
         attacking = false;
 
         GameOverText.gameObject.SetActive(false);
-        isGameActive = true;
-        Time.timeScale = 1;
+        //isGameActive = true;
+        Time.timeScale = 0;
 
         UpdateLives();
 
@@ -135,6 +135,12 @@ public class PlayerMovement : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1;
+        isGameActive = true;
     }
 
 

@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
 {
 
     public GameObject enemyPrefab;
+    public GameObject[] PowerUps; 
     public int enemyCount;
     public int waveNumber = 0;
     public int waves;
@@ -16,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     public Vector3 playerPosition;
     //public bool isGameActive;
     public PlayerMovement playerScript;
+    public GameObject currentItem;
    
 
 
@@ -56,6 +58,9 @@ public class SpawnManager : MonoBehaviour
         // only spawns enemies while isGameActive is set to true. isGameActive becomes false when there is a game over
         if (playerScript.isGameActive)
         {
+            Destroy(currentItem);
+            int index = Random.Range(0, PowerUps.Length);
+            currentItem = Instantiate(PowerUps[index], GenerateSpawnPosition(), PowerUps[index].transform.rotation);
             player.position = playerPosition;
             for (int i = 0; i < enemiesToSpawn; i++)
             {
