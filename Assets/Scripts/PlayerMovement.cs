@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float attackCooldown = 0.5f;
     private float powerUpAttackNormal = 0.5f;
     private float powerUpAttackModified = 0f;
-    
+    public int plusOne;
 
 
     // Start is called before the first frame update
@@ -162,6 +162,18 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Power-Up destroyed");
             StartCoroutine(speedBoostCooldown());
+        }
+        if (other.CompareTag("FirstAid"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Power-Up destroyed");
+            lives++;
+            livesText.text = "Lives: " + lives;
+        }
+        if (other.CompareTag("Power-Up"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Power-Up destroyed");
         }
     }
 

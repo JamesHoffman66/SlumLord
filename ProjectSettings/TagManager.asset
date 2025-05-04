@@ -9,6 +9,7 @@ TagManager:
   - Power-Up
   - SpeedBoost
   - AttackBoost
+  - FirstAid
   layers:
   - Default
   - TransparentFX
