@@ -38,8 +38,9 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if (enemyCount == 0 )
         {
-            WaveNumber(0);
             waveNumber++;
+            WaveNumber(0);
+            
             SpawnEnemyWave(waveNumber); 
         }
     }

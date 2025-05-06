@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody enemyRB;
     private SpriteRenderer spriteRenderer;
     private GameObject player;
-    private float knockBackStrength = 80f;
+    private float knockBackStrength = 300f;
 
 
     // Start is called before the first frame update
