@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public SpriteRenderer spriteRenderer;
     public float horizontalInput;
     public float verticalInput;
     private float speed = 5f;
@@ -58,13 +58,13 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput > 0)
         {
             facingLeft = false;
-            // spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         if (horizontalInput < 0)
         {
             facingLeft = true;
-            // spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
 
 

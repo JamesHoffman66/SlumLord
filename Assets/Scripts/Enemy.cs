@@ -29,13 +29,13 @@ public class Enemy : MonoBehaviour
         if (enemyRB.velocity.x > 0)
         {
             
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         if (enemyRB.velocity.x < 0)
         {
            
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
     public void OnTriggerEnter(Collider other)
