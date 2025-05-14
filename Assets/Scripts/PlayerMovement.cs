@@ -137,13 +137,13 @@ public class PlayerMovement : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
-        //Position();
-        rb.velocity = Vector3.zero;
-        //SceneManager.LoadScene(0);
         
-        //Time.timeScale = 0;
+        rb.velocity = Vector3.zero;
+        
+        
+        
         GameOverText.gameObject.SetActive(true);
-        //RestartButton.SetActive(true);
+        
         
         StartCoroutine("RestartGame");
         
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator RestartGame()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
