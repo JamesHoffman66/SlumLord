@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private GameObject player;
     private float knockBackStrength = 300f;
+    PlayerMovement playerScript;
 
 
     // Start is called before the first frame update
@@ -19,23 +20,29 @@ public class Enemy : MonoBehaviour
         enemyRB = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Enemy follows player
-        enemyRB.AddForce((player.transform.position - transform.position).normalized * speed);
-        if (enemyRB.velocity.x > 0)
+        if (playerScript.isGameActive)
         {
-            
-            spriteRenderer.flipX = true;
-        }
 
-        if (enemyRB.velocity.x < 0)
-        {
-           
-            spriteRenderer.flipX = false;
+
+            // Enemy follows player
+            enemyRB.AddForce((player.transform.position - transform.position).normalized * speed);
+            if (enemyRB.velocity.x > 0)
+            {
+
+                spriteRenderer.flipX = true;
+            }
+
+            if (enemyRB.velocity.x < 0)
+            {
+
+                spriteRenderer.flipX = false;
+            }
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -59,12 +66,17 @@ public class Enemy : MonoBehaviour
             // Writes to the console that the enemy made contact with the player
             Debug.Log("Collided with: " + collision.gameObject.name);
 
-            // Knocks back the player
-            playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
-
             // decreases player lives by one when the player is bounced away
-            PlayerMovement playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            //PlayerMovement playerScript = collision.gameObject.GetComponent<PlayerMovement>();
             playerScript.UpdateLives();
+
+            //only does knockback when game is active
+            if (playerScript.isGameActive)
+            {
+                // Knocks back the player
+                playerRigidbody.AddForce(awayFromEnemy * knockBackStrength, ForceMode.Impulse);
+            }
+            
 
         }
     }

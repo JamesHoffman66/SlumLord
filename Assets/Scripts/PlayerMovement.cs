@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPosition = new Vector3(-13, 13, 0.203f);
+        playerPosition = transform.position;
         rb = GetComponent<Rigidbody>();
         Swing.gameObject.SetActive(false);
         attacking = false;
@@ -54,71 +54,74 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Player movement using wasd to move horizontally and vertically 
-        horizontalInput = Input.GetAxis("Horizontal");
-
-        if (horizontalInput > 0)
+        if (isGameActive)
         {
-            facingLeft = false;
-            spriteRenderer.flipX = true;
-        }
+            // Player movement using wasd to move horizontally and vertically 
+            horizontalInput = Input.GetAxis("Horizontal");
 
-        if (horizontalInput < 0)
-        {
-            facingLeft = true;
-            spriteRenderer.flipX = false;
-        }
-
-
-        verticalInput = Input.GetAxis("Vertical");
-                
-
-        // Player cant go through rigid bodies
-        Vector3 moveVector = new Vector3(horizontalInput, verticalInput, 0);
-        rb.velocity = (moveVector * speed);
-
-        // Player movement boundaries 
-        if (transform.position.x < -19.3f)
-        {
-            transform.position = new Vector3(-19.3f, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > xRange)
-        {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
-        }
-        if(transform.position.y < 1.3f)
-        {
-            transform.position = new Vector3(transform.position.x, 1.3f, transform.position.z);
-        }
-        if(transform.position.y > 19.4f)
-        {
-            transform.position = new Vector3(transform.position.x, 19.4f, transform.position.z);
-        }
-
-        // attack code (destroys enemy when player attacks)
-        if (!attacking)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (horizontalInput > 0)
             {
-                // directional attacking
-                if (facingLeft)
-                {
-                    SwingLeft.gameObject.SetActive(true);
-                }
-                else 
-                { 
-                    Swing.gameObject.SetActive(true); 
-                }
-                
-                StartCoroutine(attackDelay(0.2f));
+                facingLeft = false;
+                spriteRenderer.flipX = true;
+            }
 
+            if (horizontalInput < 0)
+            {
+                facingLeft = true;
+                spriteRenderer.flipX = false;
+            }
+
+
+            verticalInput = Input.GetAxis("Vertical");
+
+
+            // Player cant go through rigid bodies
+            Vector3 moveVector = new Vector3(horizontalInput, verticalInput, 0);
+            rb.velocity = (moveVector * speed);
+
+            // Player movement boundaries 
+            if (transform.position.x < -19.3f)
+            {
+                transform.position = new Vector3(-19.3f, transform.position.y, transform.position.z);
+            }
+            if (transform.position.x > xRange)
+            {
+                transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+            }
+            if (transform.position.y < 1.3f)
+            {
+                transform.position = new Vector3(transform.position.x, 1.3f, transform.position.z);
+            }
+            if (transform.position.y > 19.4f)
+            {
+                transform.position = new Vector3(transform.position.x, 19.4f, transform.position.z);
+            }
+
+            // attack code (destroys enemy when player attacks)
+            if (!attacking)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    // directional attacking
+                    if (facingLeft)
+                    {
+                        SwingLeft.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Swing.gameObject.SetActive(true);
+                    }
+
+                    StartCoroutine(attackDelay(0.2f));
+
+                }
             }
         }
     }
 
     public void Position()
     {
-        playerPosition = transform.position;
+         transform.position = playerPosition;
     }
 
     public void UpdateLives()
@@ -133,16 +136,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
-        Position();
-        Time.timeScale = 0;
-        GameOverText.gameObject.SetActive(true);
-        RestartButton.SetActive(true);
         isGameActive = false;
+        //Position();
+        rb.velocity = Vector3.zero;
+        //SceneManager.LoadScene(0);
+        
+        //Time.timeScale = 0;
+        GameOverText.gameObject.SetActive(true);
+        //RestartButton.SetActive(true);
+        
+        StartCoroutine("RestartGame");
         
     }
 
-    public void RestartGame()
+    public IEnumerator RestartGame()
     {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -156,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
     // when the player collides with the power-Up, the power-up gets destroyed and logs it to the console
     private void OnTriggerEnter(Collider other)
     {
+        //speed boost power up
         if (other.CompareTag("SpeedBoost"))
         {
             speedBoost = true;
@@ -164,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Power-Up destroyed");
             StartCoroutine(speedBoostCooldown());
         }
+        //attack speed power up
         if (other.CompareTag("AttackBoost"))
         {
             attackSpeed = true;
@@ -172,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Power-Up destroyed");
             StartCoroutine(speedBoostCooldown());
         }
+        //FindFirstObjectByType aid power up
         if (other.CompareTag("FirstAid"))
         {
             Destroy(other.gameObject);
@@ -179,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
             lives++;
             livesText.text = "Lives: " + lives;
         }
+        //junk power up
         if (other.CompareTag("Power-Up"))
         {
             Destroy(other.gameObject);
