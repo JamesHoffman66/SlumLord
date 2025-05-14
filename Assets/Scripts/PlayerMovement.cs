@@ -32,11 +32,13 @@ public class PlayerMovement : MonoBehaviour
     private float powerUpAttackNormal = 0.5f;
     private float powerUpAttackModified = 0f;
     public int plusOne;
+    private Vector3 playerPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerPosition = new Vector3(-13, 13, 0.203f);
         rb = GetComponent<Rigidbody>();
         Swing.gameObject.SetActive(false);
         attacking = false;
@@ -114,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Position()
+    {
+        playerPosition = transform.position;
+    }
+
     public void UpdateLives()
     {
         lives--;
@@ -130,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         GameOverText.gameObject.SetActive(true);
         RestartButton.SetActive(true);
         isGameActive = false;
+        Position();
     }
 
     public void RestartGame()
