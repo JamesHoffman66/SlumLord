@@ -133,11 +133,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOver()
     {
+        Position();
         Time.timeScale = 0;
         GameOverText.gameObject.SetActive(true);
         RestartButton.SetActive(true);
         isGameActive = false;
-        Position();
+        
     }
 
     public void RestartGame()
